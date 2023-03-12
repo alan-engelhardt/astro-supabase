@@ -31,8 +31,12 @@ import Personkort from "../components/Personkort.astro";
   <style>
     main {
       display: grid;
-      grid-template-columns: repeat(auto-fit, 380px);
       gap: 1em;
+    }
+    @media screen and (min-width: 600px) {
+      main {
+        grid-template-columns: repeat(auto-fit, 350px);
+      }
     }
   </style>
 </Layout>
