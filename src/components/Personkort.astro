@@ -1,5 +1,5 @@
 ---
-const { profilbillede, navn, email, link, aktiv } = Astro.props;
+const { profilbillede, navn, email, link, aktiv, dato } = Astro.props;
 ---
 
 <a href={link}>
@@ -8,6 +8,7 @@ const { profilbillede, navn, email, link, aktiv } = Astro.props;
     <div>
       <h2>{navn}</h2>
       <p>{email}</p>
+      <p>{dato}</p>
     </div>
   </article>
 </a>
@@ -20,7 +21,7 @@ const { profilbillede, navn, email, link, aktiv } = Astro.props;
   article {
     border-radius: 1em;
     overflow: hidden;
-    border: solid 1px #aaa;
+    border: solid 1px rgb(0, 79, 128);
     color: rgb(0, 79, 128);
   }
 
@@ -31,8 +32,16 @@ const { profilbillede, navn, email, link, aktiv } = Astro.props;
     background-color: var(--aktiv);
   }
   .inaktiv {
-    opacity: 0.4;
-    border: dotted 1px #aaa;
+    position: relative;
+    opacity: 0.5;
     color: black;
+  }
+  .inaktiv::before {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color: #00000030;
   }
 </style>

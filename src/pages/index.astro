@@ -23,6 +23,7 @@ import Personkort from "../components/Personkort.astro";
           profilbillede={`/thumbs/${person.billede}`}
           navn={person.navn}
           email={person.email}
+          dato={person.created_at.slice(0, 10)}
         />
       ))
     }
