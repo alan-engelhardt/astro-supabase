@@ -1,9 +1,6 @@
 ---
 import "../styles/main.css";
-export interface Props {
-  title: string;
-}
-
+import Burger from "./Burger.astro";
 const { title } = Astro.props;
 ---
 
@@ -17,11 +14,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="/">Hjem</a>
-      </nav>
-    </header>
+    <Burger />
     <slot />
   </body>
 </html>
