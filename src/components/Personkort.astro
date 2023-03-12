@@ -1,0 +1,9 @@
+---
+const { navn, email, billedurl } = Astro.props;
+---
+
+<article>
+  <img src={billedurl} alt="profilbillede" />
+  <h2 class={navn}></h2>
+  <p class={email}></p>
+</article>
