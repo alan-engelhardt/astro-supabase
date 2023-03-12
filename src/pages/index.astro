@@ -10,22 +10,30 @@ const options = {
 const response = await fetch(url, options);
 const data = await response.json();
 import Layout from "../layouts/Layout.astro";
+import Personkort from "../components/Personkort.astro";
 ---
 
-<Layout title="Kategorier">
+<Layout title="Medlmsliste">
   <main>
-    <ul>
-      {
-        data.map((item) => {
-          return (
-            <li>
-              <a href={`/categories/${item.navn}`}>{item.navn}</a>
-            </li>
-          );
-        })
-      }
-    </ul>
+    {
+      data.map((person) => (
+        <Personkort
+          aktiv={person.aktiv}
+          link={`person.html?id=${person.id}`}
+          profilbillede={`/thumbs/${person.billede}`}
+          navn={person.navn}
+          email={person.email}
+        />
+      ))
+    }
   </main>
 
-  <style></style>
+  <style>
+    main {
+      margin: 1em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 380px);
+      gap: 1em;
+    }
+  </style>
 </Layout>

@@ -1,9 +1,38 @@
 ---
-const { navn, email, billedurl } = Astro.props;
+const { profilbillede, navn, email, link, aktiv } = Astro.props;
 ---
 
-<article>
-  <img src={billedurl} alt="profilbillede" />
-  <h2 class={navn}></h2>
-  <p class={email}></p>
-</article>
+<a href={link}>
+  <article class={!aktiv && "inaktiv"}>
+    <img src={profilbillede} alt="profilbillede" />
+    <div>
+      <h2>{navn}</h2>
+      <p>{email}</p>
+    </div>
+  </article>
+</a>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  article {
+    border-radius: 1em;
+    overflow: hidden;
+    border: solid 1px #aaa;
+    color: green;
+  }
+
+  div {
+    padding-left: 1em;
+  }
+  .aktiv {
+    background-color: var(--aktiv);
+  }
+  .inaktiv {
+    opacity: 0.4;
+    border: dotted 1px #aaa;
+    color: black;
+  }
+</style>
