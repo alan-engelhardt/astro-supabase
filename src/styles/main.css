@@ -1,7 +1,7 @@
 :root {
   box-sizing: border-box;
   --brandcolor: rgb(225, 225, 225);
-  --brandbg: rgba(0, 79, 128, 0.5);
+  --brandbg: rgba(0, 79, 128, 1);
   --inaktiv: rgba(255, 226, 226, 0.5);
   --accent: 124, 58, 237;
   --accent-gradient: linear-gradient(
