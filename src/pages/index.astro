@@ -19,7 +19,6 @@ import Personkort from "../components/Personkort.astro";
     {
       data.map((person) => (
         <Personkort
-          erAktiv={person.aktiv}
           link={`/personer/${person.id}`}
           profilbillede={`/thumbs/${person.billede}`}
           navn={person.navn}

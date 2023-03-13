@@ -1,9 +1,9 @@
 ---
-const { profilbillede, navn, email, link, dato, erAktiv } = Astro.props;
+const { profilbillede, navn, email, link, dato } = Astro.props;
 ---
 
 <a href={link}>
-  <article class={erAktiv === false && "inaktiv"}>
+  <article>
     <img src={profilbillede} alt="profilbillede" />
     <div>
       <h2>{navn}</h2>
@@ -26,7 +26,7 @@ const { profilbillede, navn, email, link, dato, erAktiv } = Astro.props;
     top: 0;
     width: 100%;
     height: 100%;
-    color: var(--brandbg);
+    color: black;
     background-color: var(--inaktiv);
   }
   a {
