@@ -1,8 +1,7 @@
 :root {
   box-sizing: border-box;
-  --brandcolor: orange;
-  --aktiv: rgb(201, 255, 201);
-  --inaktiv: rgb(255, 226, 226);
+  --brandcolor: rgb(225, 225, 225);
+  --inaktiv: rgba(255, 226, 226, 0.5);
   --accent: 124, 58, 237;
   --accent-gradient: linear-gradient(
     45deg,
@@ -11,8 +10,11 @@
     white 60%
   );
 }
-html {
+body {
   font-family: system-ui, sans-serif;
+  max-width: 1200px;
+  margin: auto;
+  background-color: var(--brandcolor);
 }
 code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
