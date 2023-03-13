@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+const { id } = Astro.params;
+
+const url = "https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/medlemmer";
+
+const options = {
+  headers: {
+    apikey:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4",
+  },
+};
+
+export async function getStaticPaths() {
+  const response = await fetch(url, options);
+  const data = await response.json();
+  return data.map((person) => ({ params: { id: person.id } }));
+}
+
+const res = await fetch(url + id, options);
+const product = await res.json();
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h2>{product.productdisplayname}</h2>
+    <img
+      src={`https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp`}
+      alt=""
+    />
+  </main>
+
+  <style></style>
+</Layout>
