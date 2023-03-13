@@ -32,8 +32,8 @@ const dennePerson = await res.json();
 
 <Layout title={dennePerson.id}>
   <main>
-    <h2>{dennePerson.navn}</h2>
-    <p>{dennePerson.email}</p>
-    <img src={`../thumbs/${dennePerson.billede}`} alt="profilbillede" />
+    <h2>{dennePerson[0].navn}</h2>
+    <p>{dennePerson[0].email}</p>
+    <img src={`../thumbs/${dennePerson[0].billede}`} alt="profilbillede" />
   </main>
 </Layout>
