@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { Debug } from "astro/components";
+//import { Debug } from "astro/components";
 const { personID } = Astro.params;
 
 export let data;
@@ -21,12 +21,11 @@ export async function getStaticPaths() {
 const dennePerson = data.find((person) => person.id == personID);
 ---
 
-<Debug {dennePerson} />
-
+<!-- <Debug {dennePerson} /> -->
 <Layout title={dennePerson.id}>
   <main>
-    <h2>{dennePerson[0].navn}</h2>
-    <p>{dennePerson[0].email}</p>
-    <img src={`../thumbs/${dennePerson[0].billede}`} alt="profilbillede" />
+    <h2>{dennePerson.navn}</h2>
+    <p>{dennePerson.email}</p>
+    <img src={`../thumbs/${dennePerson.billede}`} alt="profilbillede" />
   </main>
 </Layout>
