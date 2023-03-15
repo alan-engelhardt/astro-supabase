@@ -16,6 +16,7 @@ body {
   max-width: 1200px;
   margin: auto;
   background-color: var(--brandcolor);
+  padding: 1em;
 }
 code {
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,

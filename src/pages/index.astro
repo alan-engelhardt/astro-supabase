@@ -17,6 +17,7 @@ const medlemmer = await response.json();
 const ateister = medlemmer.filter((person) => person.tro == 1);
 const muslimer = medlemmer.filter((person) => person.tro == 2);
 const kristne = medlemmer.filter((person) => person.tro == 3);
+const andre = medlemmer.filter((person) => person.tro > 3);
 ---
 
 <Layout title="Medlmsliste">
@@ -34,18 +35,24 @@ const kristne = medlemmer.filter((person) => person.tro == 3);
     <section>
       {kristne.map((person) => <Personkort {person} />)}
     </section>
+    {andre.length > 0 && <h2>andre</h2>}
+    <section>
+      {andre.map((person) => <Personkort {person} />)}
+    </section>
   </main>
 </Layout>
 
 <style>
   h2 {
     color: var(--brandbg);
+    margin-bottom: 3px;
+    margin-top: 1em;
+    border-bottom: 1px solid var(--brandbg);
   }
   section {
     display: grid;
     gap: 1em;
     padding: 1em;
-    border-top: 1px solid var(--brandbg);
   }
   @media screen and (min-width: 600px) {
     section {
