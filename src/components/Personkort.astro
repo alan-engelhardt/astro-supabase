@@ -3,7 +3,7 @@ const { person } = Astro.props;
 ---
 
 <a href={person.id}>
-  <article>
+  <article class={!person.aktiv && "inaktiv"}>
     <img src=`thumbs/${person.billede}` alt="profilbillede" />
     <div>
       <h2>{person.navn}</h2>

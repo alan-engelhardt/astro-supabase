@@ -13,10 +13,10 @@ const options = {
 };
 
 const response = await fetch(url, options);
-const data = await response.json();
-const ateister = data.filter((person) => person.tro == 1);
-const muslimer = data.filter((person) => person.tro == 2);
-const kristne = data.filter((person) => person.tro == 3);
+const medlemmer = await response.json();
+const ateister = medlemmer.filter((person) => person.tro == 1);
+const muslimer = medlemmer.filter((person) => person.tro == 2);
+const kristne = medlemmer.filter((person) => person.tro == 3);
 ---
 
 <Layout title="Medlmsliste">
