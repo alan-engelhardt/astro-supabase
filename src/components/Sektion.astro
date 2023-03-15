@@ -1,0 +1,19 @@
+---
+import Personkort from "Personkort.astro";
+const { indhold } = Astro.props;
+---
+
+<section>
+  <h2>{indhold.tro}</h2>
+  {
+    aktive.map((indhold) => (
+      <Personkort
+        link={"/personer/" + indhold.id}
+        profilbillede={`/thumbs/${indhold.billede}`}
+        navn={indhold.navn}
+        email={indhold.email}
+        dato={indhold.created_at.slice(0, 10)}
+      />
+    ))
+  }
+</section>

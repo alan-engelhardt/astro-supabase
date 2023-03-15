@@ -1,7 +1,7 @@
 ---
 // import { Debug } from "astro/components";
 import Layout from "../layouts/Layout.astro";
-import Personkort from "../components/Personkort.astro";
+import Sektion from "../components/Sektion.astro";
 
 const url = "https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/medlemmer";
 
@@ -20,34 +20,8 @@ const inaktive = allePersoner.filter((person) => !person.aktiv);
 
 <Layout title="Medlmsliste">
   <main>
-    <h2>Aktive</h2>
-    <section id="aktive">
-      {
-        aktive.map((person) => (
-          <Personkort
-            link={"/personer/" + person.id}
-            profilbillede={`/thumbs/${person.billede}`}
-            navn={person.navn}
-            email={person.email}
-            dato={person.created_at.slice(0, 10)}
-          />
-        ))
-      }
-    </section>
-    <h2>Inaktive</h2>
-    <section id="inaktive">
-      {
-        inaktive.map((person) => (
-          <Personkort
-            link={"/personer/" + person.id}
-            profilbillede={`/thumbs/${person.billede}`}
-            navn={person.navn}
-            email={person.email}
-            dato={person.created_at.slice(0, 10)}
-          />
-        ))
-      }
-    </section>
+    <Sektion {aktive} />
+    <Sektion {inaktive} />
   </main>
 </Layout>
 
