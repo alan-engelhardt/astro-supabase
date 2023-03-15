@@ -1,5 +1,5 @@
 ---
-import { Debug } from "astro/components";
+// import { Debug } from "astro/components";
 import Layout from "../layouts/Layout.astro";
 import Personkort from "../components/Personkort.astro";
 
@@ -13,9 +13,9 @@ const options = {
 };
 
 const response = await fetch(url, options);
-const data = await response.json();
-const aktive = data.filter((person) => person.aktiv);
-const inaktive = data.filter((person) => !person.aktiv);
+const allePersoner = await response.json();
+const aktive = allePersoner.filter((person) => person.aktiv);
+const inaktive = allePersoner.filter((person) => !person.aktiv);
 ---
 
 <Layout title="Medlmsliste">
@@ -52,15 +52,17 @@ const inaktive = data.filter((person) => !person.aktiv);
 </Layout>
 
 <style>
+  main {
+    padding: 1em;
+  }
   section {
     display: grid;
     gap: 1em;
-    padding: 1em;
   }
   @media screen and (min-width: 600px) {
     section {
       grid-template-columns: repeat(auto-fit, 350px);
-      /* justify-content: center; */
+      justify-content: center;
     }
   }
 </style>
