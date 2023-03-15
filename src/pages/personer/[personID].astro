@@ -16,19 +16,18 @@ export async function getStaticPaths() {
 
   return data.map((person) => ({
     params: { personID: person.id },
-    props: { dennePerson: person },
+    props: { person },
   }));
 }
 
-const { dennePerson } = Astro.props;
+const { person } = Astro.props;
 ---
 
-<Debug {dennePerson} />
-
-<Layout title={dennePerson.id}>
+<!-- <Debug {person} /> -->
+<Layout title={person.id}>
   <main>
-    <h2>{dennePerson.navn}</h2>
-    <p>{dennePerson.email}</p>
-    <img src={`../thumbs/${dennePerson.billede}`} alt="profilbillede" />
+    <h2>{person.navn}</h2>
+    <p>{person.email}</p>
+    <img src={`../thumbs/${person.billede}`} alt="profilbillede" />
   </main>
 </Layout>
