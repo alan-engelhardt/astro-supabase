@@ -1,14 +1,14 @@
 ---
-const { profilbillede, navn, email, link, dato } = Astro.props;
+const { person } = Astro.props;
 ---
 
-<a href={link}>
+<a href={person.id}>
   <article>
-    <img src={profilbillede} alt="profilbillede" />
+    <img src=`thumbs/${person.billede}` alt="profilbillede" />
     <div>
-      <h2>{navn}</h2>
-      <p>{email}</p>
-      <p><span>Indmeldt</span> {dato}</p>
+      <h2>{person.navn}</h2>
+      <p>{person.email}</p>
+      <p><span>Indmeldt</span> {person.dato}</p>
     </div>
   </article>
 </a>

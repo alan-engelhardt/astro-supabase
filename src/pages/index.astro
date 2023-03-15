@@ -14,33 +14,41 @@ const options = {
 
 const response = await fetch(url, options);
 const data = await response.json();
+const ateister = data.filter((person) => person.tro == 1);
+const muslimer = data.filter((person) => person.tro == 2);
+const kristne = data.filter((person) => person.tro == 3);
 ---
 
 <Layout title="Medlmsliste">
-  <Debug {data} />
+  <h1>Medlemmer</h1>
   <main>
-    {
-      data.map((person) => (
-        <Personkort
-          link={"/personer/" + person.id}
-          profilbillede={`/thumbs/${person.billede}`}
-          navn={person.navn}
-          email={person.email}
-          dato={person.created_at.slice(0, 10)}
-        />
-      ))
-    }
+    <h2>ateister</h2>
+    <section>
+      {ateister.map((person) => <Personkort {person} />)}
+    </section>
+    <h2>muslimer</h2>
+    <section>
+      {muslimer.map((person) => <Personkort {person} />)}
+    </section>
+    <h2>kristne</h2>
+    <section>
+      {kristne.map((person) => <Personkort {person} />)}
+    </section>
   </main>
 </Layout>
 
 <style>
-  main {
+  h2 {
+    color: var(--brandbg);
+  }
+  section {
     display: grid;
     gap: 1em;
     padding: 1em;
+    border-top: 1px solid var(--brandbg);
   }
   @media screen and (min-width: 600px) {
-    main {
+    section {
       grid-template-columns: repeat(auto-fit, 350px);
       justify-content: center;
     }
