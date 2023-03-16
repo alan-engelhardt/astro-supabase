@@ -15,14 +15,16 @@ const options = {
 const response = await fetch(url, options);
 const allePersoner = await response.json();
 
-const aktive = allePersoner.filter((person) => person.aktiv);
-const inaktive = allePersoner.filter((person) => !person.aktiv);
+const Ateister = allePersoner.filter((person) => person.tro == 1);
+const Muslimer = allePersoner.filter((person) => person.tro == 2);
+const Kristne = allePersoner.filter((person) => person.tro == 3);
 ---
 
 <Layout title="Medlmsliste">
   <main>
-    <Sektion indhold={aktive} filter="Aktive" />
-    <Sektion indhold={inaktive} filter="Passive" />
+    <Sektion indhold={Ateister} filter="Ateister" />
+    <Sektion indhold={Muslimer} filter="Muslimer" />
+    <Sektion indhold={Kristne} filter="Kristne" />
   </main>
 </Layout>
 
