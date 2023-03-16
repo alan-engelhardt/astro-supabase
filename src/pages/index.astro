@@ -1,5 +1,4 @@
 ---
-// import { Debug } from "astro/components";
 import Layout from "../layouts/Layout.astro";
 import Personkort from "../components/Personkort.astro";
 
@@ -14,53 +13,32 @@ const options = {
 
 const response = await fetch(url, options);
 const allePersoner = await response.json();
-const aktive = allePersoner.filter((person) => person.aktiv);
-const inaktive = allePersoner.filter((person) => !person.aktiv);
 ---
 
 <Layout title="Medlmsliste">
   <main>
-    <h2>Aktive</h2>
-    <section id="aktive">
-      {
-        aktive.map((person) => (
-          <Personkort
-            link={"/personer/" + person.id}
-            profilbillede={`/thumbs/${person.billede}`}
-            navn={person.navn}
-            email={person.email}
-            dato={person.created_at.slice(0, 10)}
-          />
-        ))
-      }
-    </section>
-    <h2>Inaktive</h2>
-    <section id="inaktive">
-      {
-        inaktive.map((person) => (
-          <Personkort
-            link={"/personer/" + person.id}
-            profilbillede={`/thumbs/${person.billede}`}
-            navn={person.navn}
-            email={person.email}
-            dato={person.created_at.slice(0, 10)}
-          />
-        ))
-      }
-    </section>
+    {
+      allePersoner.map((person) => (
+        <Personkort
+          link={"/personer/" + person.id}
+          profilbillede={`/thumbs/${person.billede}`}
+          navn={person.navn}
+          email={person.email}
+          dato={person.created_at.slice(0, 10)}
+        />
+      ))
+    }
   </main>
 </Layout>
 
 <style>
   main {
     padding: 1em;
-  }
-  section {
     display: grid;
     gap: 1em;
   }
   @media screen and (min-width: 600px) {
-    section {
+    main {
       grid-template-columns: repeat(auto-fit, 350px);
       justify-content: center;
     }
