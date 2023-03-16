@@ -1,17 +1,15 @@
 ---
-import { Debug } from "astro/components";
 import Personkort from "../components/Personkort.astro";
 const { indhold, filter } = Astro.props;
 ---
 
-<!-- <Debug {}/> -->
 <h2>{filter}</h2>
 <section>
   {
     indhold.map((person) => (
       <Personkort
         aktiv={person.aktiv}
-        link={"/personer/" + person.id}
+        link={"/personer/" + person.slug}
         profilbillede={`/thumbs/${person.billede}`}
         navn={person.navn}
         email={person.email}

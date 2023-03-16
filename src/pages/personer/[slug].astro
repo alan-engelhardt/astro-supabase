@@ -1,9 +1,5 @@
 ---
-//import { Debug } from "astro/components";
 import Layout from "../../layouts/Layout.astro";
-const { personID } = Astro.params;
-
-export let data;
 
 export async function getStaticPaths() {
   const url = `https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/medlemmer`;
@@ -14,20 +10,21 @@ export async function getStaticPaths() {
     },
   };
   const response = await fetch(url, options);
-  data = await response.json();
+  const data = await response.json();
+
   return data.map((person) => ({
-    params: { personID: person.id },
-    props: { dennePerson: person },
+    params: { slug: person.slug },
+    props: { person },
   }));
 }
 
-const { dennePerson } = Astro.props;
+const { person } = Astro.props;
 ---
 
-<Layout title={dennePerson.navn}>
+<Layout title={person.navn}>
   <main>
-    <h2>{dennePerson.navn}</h2>
-    <p>{dennePerson.email}</p>
-    <img src={`../thumbs/${dennePerson.billede}`} alt="profilbillede" />
+    <h2>{person.navn}</h2>
+    <p>{person.email}</p>
+    <img src={`../thumbs/${person.billede}`} alt="profilbillede" />
   </main>
 </Layout>
