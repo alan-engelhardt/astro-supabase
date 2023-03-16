@@ -23,8 +23,21 @@ const { person } = Astro.props;
 
 <Layout title={person.navn}>
   <main>
-    <h2>{person.navn}</h2>
-    <p>{person.email}</p>
     <img src={`../thumbs/${person.billede}`} alt="profilbillede" />
+    <div>
+      <h2>{person.navn}</h2>
+      <p>{person.email}</p>
+      <p>Tilmeldt {person.created_at.slice(0, 10)}</p>
+    </div>
   </main>
 </Layout>
+
+<style>
+  img {
+    width: 80%;
+    margin-right: 1em;
+  }
+  main {
+    display: flex;
+  }
+</style>
