@@ -10,6 +10,7 @@ const { indhold, filter } = Astro.props;
   {
     indhold.map((person) => (
       <Personkort
+        aktiv={person.aktiv}
         link={"/personer/" + person.id}
         profilbillede={`/thumbs/${person.billede}`}
         navn={person.navn}

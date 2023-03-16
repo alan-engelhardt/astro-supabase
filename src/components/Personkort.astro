@@ -1,9 +1,9 @@
 ---
-const { profilbillede, navn, email, link, dato } = Astro.props;
+const { profilbillede, navn, email, link, dato, aktiv } = Astro.props;
 ---
 
 <a href={link}>
-  <article>
+  <article class={!aktiv && "inaktiv"}>
     <img src={profilbillede} alt="profilbillede" />
     <div>
       <h2>{navn}</h2>
