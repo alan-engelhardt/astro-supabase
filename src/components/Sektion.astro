@@ -1,19 +1,35 @@
 ---
-import Personkort from "Personkort.astro";
-const { indhold } = Astro.props;
+import { Debug } from "astro/components";
+import Personkort from "../components/Personkort.astro";
+const { indhold, filter } = Astro.props;
+console.log("TEST " + indhold);
 ---
 
+<!-- <Debug {}/> -->
+<h2>{filter}</h2>
 <section>
-  <h2>{indhold.tro}</h2>
   {
-    aktive.map((indhold) => (
+    indhold.map((person) => (
       <Personkort
-        link={"/personer/" + indhold.id}
-        profilbillede={`/thumbs/${indhold.billede}`}
-        navn={indhold.navn}
-        email={indhold.email}
-        dato={indhold.created_at.slice(0, 10)}
+        link={"/personer/" + person.id}
+        profilbillede={`/thumbs/${person.billede}`}
+        navn={person.navn}
+        email={person.email}
+        dato={person.created_at.slice(0, 10)}
       />
     ))
   }
 </section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1em;
+  }
+  @media screen and (min-width: 600px) {
+    section {
+      grid-template-columns: repeat(auto-fit, 350px);
+      justify-content: center;
+    }
+  }
+</style>
