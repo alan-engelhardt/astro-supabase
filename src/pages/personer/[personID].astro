@@ -15,10 +15,13 @@ export async function getStaticPaths() {
   };
   const response = await fetch(url, options);
   data = await response.json();
-  return data.map((person) => ({ params: { personID: person.id } }));
+  return data.map((person) => ({
+    params: { personID: person.id },
+    props: { dennePerson: person },
+  }));
 }
 
-const dennePerson = data.find((person) => person.id == personID);
+const { dennePerson } = Astro.props;
 ---
 
 <Layout title={dennePerson.navn}>
