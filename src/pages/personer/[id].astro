@@ -23,7 +23,7 @@ const { person } = Astro.props;
 
 <Layout title={person.navn}>
   <main>
-    <img src={`../thumbs/${person.billede}`} alt="profilbillede" />
+    <img src={`../../thumbs/${person.billede}`} alt="profilbillede" />
     <div>
       <h2>{person.navn}</h2>
       <p>{person.email}</p>
