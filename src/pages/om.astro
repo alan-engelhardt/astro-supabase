@@ -14,7 +14,7 @@ const response = await fetch(url, options);
 const data = await response.json();
 ---
 
-<Layout title="Test">
+<Layout title="Japanske tegn">
   <Debug {data} />
   <h1>{data[0].tegn}</h1>
   <img src={data[0].billede} alt="" />
