@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   const data = await response.json();
 
   return data.map((person) => ({
-    params: { slug: person.slug },
+    params: { id: person.slug },
     props: { person },
   }));
 }
