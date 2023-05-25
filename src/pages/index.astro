@@ -1,5 +1,5 @@
 ---
-// import { Debug } from "astro/components";
+import { Debug } from "astro/components";
 import Layout from "../layouts/Layout.astro";
 import Sektion from "../components/Sektion.astro";
 
@@ -18,18 +18,64 @@ const allePersoner = await response.json();
 const Ateister = allePersoner.filter((person) => person.tro == 1);
 const Muslimer = allePersoner.filter((person) => person.tro == 2);
 const Kristne = allePersoner.filter((person) => person.tro == 3);
+const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 ---
 
 <Layout title="Medlmsliste">
+  <nav>
+    <button>Alle</button>
+    <button>Ateister</button>
+    <button>Muslimer</button>
+    <button>Kristne</button>
+    <button>Andre</button>
+  </nav>
   <main>
-    <Sektion indhold={Ateister} filter="Ateister" />
-    <Sektion indhold={Muslimer} filter="Muslimer" />
-    <Sektion indhold={Kristne} filter="Kristne" />
+    <div class="ateister">
+      <Sektion indhold={Ateister} filter="Ateister" />
+    </div>
+    <div class="muslimer">
+      <Sektion indhold={Muslimer} filter="Muslimer" />
+    </div>
+    <div class="kristne">
+      <Sektion indhold={Kristne} filter="Kristne" />
+    </div>
+    <div class="andre">
+      {Andre.length > 0 && <Sektion indhold={Andre} filter="Andre" />}
+    </div>
   </main>
+  <Debug {allePersoner} />
 </Layout>
 
 <style>
   main {
     padding: 1em;
   }
+  .hide {
+    display: none;
+  }
 </style>
+
+<script>
+  const knapper = document.querySelectorAll("button");
+  const kasser = document.querySelectorAll("div");
+
+  knapper.forEach((knap) => {
+    knap.addEventListener("click", sorter);
+  });
+
+  function sorter() {
+    console.log(kasser);
+    kasser.forEach((kasse) => kasse.classList.add("hide"));
+    if (this.textContent == "Ateister") {
+      document.querySelector(".ateister").classList.remove("hide");
+    } else if (this.textContent == "Muslimer") {
+      document.querySelector(".muslimer").classList.remove("hide");
+    } else if (this.textContent == "Kristne") {
+      document.querySelector(".kristne").classList.remove("hide");
+    } else if (this.textContent == "Andre") {
+      document.querySelector(".andre").classList.remove("hide");
+    } else if (this.textContent == "Alle") {
+      kasser.forEach((kasse) => kasse.classList.remove("hide"));
+    }
+  }
+</script>

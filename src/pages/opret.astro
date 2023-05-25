@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Opret">
+  <form>
+    <label for="name">Navn</label>
+    <input
+      class="input_1"
+      type="text"
+      name="name"
+      placeholder="Full name"
+      required
+    />
+
+    <label for="email">Email</label>
+    <input
+      class="input_3"
+      type="text"
+      name="email"
+      placeholder="Email"
+      required
+    />
+
+    <button>Submit</button>
+  </form>
+</Layout>
+<script>
+  const url = "https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/medlemmer";
+  const key =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4";
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", sendForm);
+
+  function sendForm(event) {
+    event.preventDefault();
+    const formData = form.elements;
+    const navn = formData.name.value;
+    const email = formData.email.value;
+    console.log(navn, email);
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        apikey: key,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ navn, email }),
+    });
+    location.href = "/";
+  }
+</script>
+
+<style>
+  label,
+  input {
+    display: block;
+  }
+  label,
+  button {
+    margin-top: 0.5em;
+  }
+</style>
