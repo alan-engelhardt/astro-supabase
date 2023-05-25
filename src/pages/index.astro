@@ -31,19 +31,23 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   </nav>
   <main>
     <div class="ateister">
-      <Sektion indhold={Ateister} filter="Ateister" />
+      <Sektion indhold={Ateister.slice(0, 3)} filter="Ateister" />
     </div>
     <div class="muslimer">
-      <Sektion indhold={Muslimer} filter="Muslimer" />
+      <Sektion indhold={Muslimer.slice(0, 3)} filter="Muslimer" />
     </div>
     <div class="kristne">
-      <Sektion indhold={Kristne} filter="Kristne" />
+      <Sektion indhold={Kristne.slice(0, 3)} filter="Kristne" />
     </div>
     <div class="andre">
-      {Andre.length > 0 && <Sektion indhold={Andre} filter="Andre" />}
+      {
+        Andre.length > 0 && (
+          <Sektion indhold={Andre.slice(0, 3)} filter="Andre" />
+        )
+      }
     </div>
   </main>
-  <Debug {allePersoner} />
+  <!-- <Debug {allePersoner} /> -->
 </Layout>
 
 <style>
