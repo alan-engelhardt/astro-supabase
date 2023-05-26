@@ -1,9 +1,8 @@
 ---
 import Personkort from "../components/Personkort.astro";
-const { indhold, filter } = Astro.props;
+const { indhold } = Astro.props;
 ---
 
-<h2>{filter}</h2>
 <section>
   {
     indhold.map((person) => (
@@ -20,14 +19,10 @@ const { indhold, filter } = Astro.props;
 </section>
 
 <style>
-  h2 {
-    margin-top: 1.5em;
-    border-bottom: 1px solid var(--brandbg);
-    color: var(--brandbg);
-  }
   section {
     display: grid;
     gap: 1em;
+    margin-bottom: 1em;
   }
   @media screen and (min-width: 600px) {
     section {

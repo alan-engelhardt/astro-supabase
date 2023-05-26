@@ -30,29 +30,47 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     <button>Andre</button>
   </nav>
   <main>
-    <div class="ateister">
-      <Sektion indhold={Ateister.slice(0, 3)} filter="Ateister" />
+    <div class="tro ateister">
+      <h2>Ateister</h2>
+      <Sektion indhold={Ateister.slice(0, 3)} />
+      <p class="mereknap">Vis alle</p>
+      <div class="mere hide">
+        <Sektion indhold={Ateister.slice(3)} />
+      </div>
     </div>
-    <div class="muslimer">
-      <Sektion indhold={Muslimer.slice(0, 3)} filter="Muslimer" />
-    </div>
-    <div class="kristne">
-      <Sektion indhold={Kristne.slice(0, 3)} filter="Kristne" />
-    </div>
-    {
-      Andre.length > 0 && (
-        <div class="andre">
-          <Sektion indhold={Andre.slice(0, 3)} filter="Andre" />
-        </div>
-      )
-    }
   </main>
-  <!-- <Debug {allePersoner} /> -->
+  <div class="tro muslimer">
+    <h2>Muslimer</h2>
+    <Sektion indhold={Muslimer.slice(0, 3)} />
+    <Sektion indhold={Muslimer.slice(3)} />
+  </div>
+  <div class="tro kristne">
+    <h2>Kristne</h2>
+    <Sektion indhold={Kristne.slice(0, 3)} />
+  </div>
+  {
+    Andre.length > 0 && (
+      <div class="tro andre">
+        <h2>Andre</h2>
+        <Sektion indhold={Andre.slice(0, 3)} />
+      </div>
+    )
+  }
 </Layout>
+<!-- <Debug {allePersoner} /> -->
 
 <style>
   main {
     padding: 1em;
+  }
+  .mereknap {
+    text-align: center;
+    cursor: pointer;
+  }
+  h2 {
+    margin-top: 1.5em;
+    border-bottom: 1px solid var(--brandbg);
+    color: var(--brandbg);
   }
   .hide {
     display: none;
@@ -61,11 +79,22 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 
 <script>
   const knapper = document.querySelectorAll("button");
-  const kasser = document.querySelectorAll("div");
+  const mereknapper = document.querySelectorAll(".mereknap");
+  const kasser = document.querySelectorAll(".tro");
 
   knapper.forEach((knap) => {
     knap.addEventListener("click", sorter);
   });
+
+  mereknapper.forEach((knap) => {
+    knap.addEventListener("click", vismere);
+  });
+
+  function vismere() {
+    console.log(this.nextElementSibling);
+    this.nextElementSibling.classList.remove("hide");
+    this.classList.add("hide");
+  }
 
   function sorter() {
     console.log(kasser);
