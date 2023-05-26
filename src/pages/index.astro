@@ -30,7 +30,7 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     <button>Andre</button>
   </nav>
   <main>
-    <div class="tro ateister">
+    <div class="tro Ateister">
       <h2>Ateister</h2>
       <Sektion indhold={Ateister.slice(0, 3)} />
       <div class="mere hide">
@@ -39,7 +39,7 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
       <p class="mereknap"><span>vis alle</span></p>
     </div>
   </main>
-  <div class="tro muslimer">
+  <div class="tro Muslimer">
     <h2>Muslimer</h2>
     <Sektion indhold={Muslimer.slice(0, 3)} />
     <div class="mere hide">
@@ -47,7 +47,7 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     </div>
     <p class="mereknap"><span>vis alle</span></p>
   </div>
-  <div class="tro kristne">
+  <div class="tro Kristne">
     <h2>Kristne</h2>
     <Sektion indhold={Kristne.slice(0, 3)} />
     {
@@ -65,7 +65,7 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   </div>
   {
     Andre.length > 0 && (
-      <div class="tro andre">
+      <div class="tro Andre">
         <h2>Andre</h2>
         <Sektion indhold={Andre.slice(0, 3)} />
       </div>
@@ -100,8 +100,11 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 
 <script>
   const knapper = document.querySelectorAll("button");
+  const mere = document.querySelectorAll(".mere");
   const mereknapper = document.querySelectorAll(".mereknap");
   const kasser = document.querySelectorAll(".tro");
+
+  console.log(kasser);
 
   knapper.forEach((knap) => {
     knap.addEventListener("click", sorter);
@@ -122,16 +125,15 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   function sorter() {
     console.log(kasser);
     kasser.forEach((kasse) => kasse.classList.add("hide"));
-    if (this.textContent == "Ateister") {
-      document.querySelector(".ateister").classList.remove("hide");
-    } else if (this.textContent == "Muslimer") {
-      document.querySelector(".muslimer").classList.remove("hide");
-    } else if (this.textContent == "Kristne") {
-      document.querySelector(".kristne").classList.remove("hide");
-    } else if (this.textContent == "Andre") {
-      document.querySelector(".andre").classList.remove("hide");
-    } else if (this.textContent == "Alle") {
+    mere.forEach((kasse) => kasse.classList.add("hide"));
+    mereknapper.forEach((knap) => knap.classList.remove("hide"));
+    const tro = "." + this.textContent;
+    if (this.textContent == "Alle") {
       kasser.forEach((kasse) => kasse.classList.remove("hide"));
+    } else {
+      document.querySelector(tro).classList.remove("hide");
+      document.querySelector(tro + " .mere").classList.remove("hide");
+      document.querySelector(tro + " .mereknap").classList.add("hide");
     }
   }
 </script>
