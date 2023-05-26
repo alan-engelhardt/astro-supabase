@@ -33,10 +33,10 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     <div class="tro ateister">
       <h2>Ateister</h2>
       <Sektion indhold={Ateister.slice(0, 3)} />
-      <p class="mereknap">Vis alle</p>
       <div class="mere hide">
         <Sektion indhold={Ateister.slice(3)} />
       </div>
+      <p class="mereknap">Vis alle</p>
     </div>
   </main>
   <div class="tro muslimer">
@@ -81,6 +81,7 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   const knapper = document.querySelectorAll("button");
   const mereknapper = document.querySelectorAll(".mereknap");
   const kasser = document.querySelectorAll(".tro");
+  let more = 0;
 
   knapper.forEach((knap) => {
     knap.addEventListener("click", sorter);
@@ -91,9 +92,9 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   });
 
   function vismere() {
-    console.log(this.nextElementSibling);
-    this.nextElementSibling.classList.remove("hide");
-    this.classList.add("hide");
+    more = !more;
+    this.previousElementSibling.classList.toggle("hide");
+    more ? (this.textContent = "vis færre") : (this.textContent = "vis alle");
   }
 
   function sorter() {
