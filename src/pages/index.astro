@@ -36,17 +36,32 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
       <div class="mere hide">
         <Sektion indhold={Ateister.slice(3)} />
       </div>
-      <p class="mereknap">Vis alle</p>
+      <p class="mereknap"><span>vis alle</span></p>
     </div>
   </main>
   <div class="tro muslimer">
     <h2>Muslimer</h2>
     <Sektion indhold={Muslimer.slice(0, 3)} />
-    <Sektion indhold={Muslimer.slice(3)} />
+    <div class="mere hide">
+      <Sektion indhold={Muslimer.slice(3)} />
+    </div>
+    <p class="mereknap"><span>vis alle</span></p>
   </div>
   <div class="tro kristne">
     <h2>Kristne</h2>
     <Sektion indhold={Kristne.slice(0, 3)} />
+    {
+      Kristne.slice(3).length > 0 && (
+        <>
+          <div class="mere hide">
+            <Sektion indhold={Kristne.slice(3)} />
+          </div>
+          <p class="mereknap">
+            <span>vis alle</span>
+          </p>
+        </>
+      )
+    }
   </div>
   {
     Andre.length > 0 && (
@@ -67,6 +82,12 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     text-align: center;
     cursor: pointer;
   }
+  .mereknap span {
+    border-radius: 1em;
+    padding: 0.2em 1em;
+    color: white;
+    background-color: var(--brandbg);
+  }
   h2 {
     margin-top: 1.5em;
     border-bottom: 1px solid var(--brandbg);
@@ -81,7 +102,6 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   const knapper = document.querySelectorAll("button");
   const mereknapper = document.querySelectorAll(".mereknap");
   const kasser = document.querySelectorAll(".tro");
-  let more = 0;
 
   knapper.forEach((knap) => {
     knap.addEventListener("click", sorter);
@@ -92,9 +112,10 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   });
 
   function vismere() {
-    more = !more;
     this.previousElementSibling.classList.toggle("hide");
-    more ? (this.textContent = "vis færre") : (this.textContent = "vis alle");
+    this.previousElementSibling.classList.contains("hide")
+      ? (this.firstElementChild.textContent = "vis alle")
+      : (this.firstElementChild.textContent = "vis færre");
   }
 
   function sorter() {
