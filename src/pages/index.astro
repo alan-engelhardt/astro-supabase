@@ -113,9 +113,10 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 
   function vismere() {
     this.previousElementSibling.classList.toggle("hide");
-    this.previousElementSibling.classList.contains("hide")
-      ? (this.firstElementChild.textContent = "vis alle")
-      : (this.firstElementChild.textContent = "vis færre");
+    this.firstElementChild.textContent =
+      this.previousElementSibling.classList.contains("hide")
+        ? "vis alle"
+        : "vis færre";
   }
 
   function sorter() {
