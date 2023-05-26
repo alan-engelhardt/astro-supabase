@@ -39,13 +39,13 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
     <div class="kristne">
       <Sektion indhold={Kristne.slice(0, 3)} filter="Kristne" />
     </div>
-    <div class="andre">
-      {
-        Andre.length > 0 && (
+    {
+      Andre.length > 0 && (
+        <div class="andre">
           <Sektion indhold={Andre.slice(0, 3)} filter="Andre" />
-        )
-      }
-    </div>
+        </div>
+      )
+    }
   </main>
   <!-- <Debug {allePersoner} /> -->
 </Layout>
