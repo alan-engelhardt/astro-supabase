@@ -1,13 +1,17 @@
+---
+const { title } = Astro.props;
+---
+
 <div id="burger-menu">
   <span></span>
 </div>
 
 <nav id="menu">
   <ul>
-    <li><a href="/">Medlemmer</a></li>
-    <li><a href="/opret">Bliv medlem</a></li>
-    <li><a href="/begivenheder">Begivenheder</a></li>
-    <li><a href="/om">Om os</a></li>
+    <li class={title == "Medlemmer" && "aktiv"}><a href="/">Medlemmer</a></li>
+    <li class={title == "Bliv medlem" && "aktiv"}><a href="/opret">Bliv medlem</a></li>
+    <li class={title == "Begivenheder" && "aktiv"}><a href="/begivenheder">Begivenheder</a></li>
+    <li class={title == "Om os" && "aktiv"}><a href="/om">Om os</a></li>
   </ul>
 </nav>
 
@@ -22,6 +26,10 @@
 </script>
 
 <style>
+  #menu li.aktiv a {
+    text-decoration: underline;
+    color: red;
+  }
   #menu li {
     display: inline-block;
   }

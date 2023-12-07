@@ -5,8 +5,7 @@ const url = "https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/test";
 
 const options = {
   headers: {
-    apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4",
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4",
   },
 };
 
@@ -14,7 +13,8 @@ const response = await fetch(url, options);
 const data = await response.json();
 ---
 
-<Layout title="Japanske tegn">
+<Layout title="Om os">
+  <nav><a href="/">Medlemmer</a></nav>
   <Debug {data} />
   <h1>{data[0].tegn}</h1>
   <img src={data[0].billede} alt="" />

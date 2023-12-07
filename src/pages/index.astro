@@ -7,8 +7,7 @@ const url = "https://pbhqptcgtunejfwsunzi.supabase.co/rest/v1/medlemmer";
 
 const options = {
   headers: {
-    apikey:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4",
+    apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBiaHFwdGNndHVuZWpmd3N1bnppIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Nzg1MjU3NjEsImV4cCI6MTk5NDEwMTc2MX0.qPLnnbV_2nDBjczEpGDt10lr3DQgCZ54roKiy0OZXL4",
   },
 };
 
@@ -21,9 +20,9 @@ const Kristne = allePersoner.filter((person) => person.tro == 3);
 const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 ---
 
-<Layout title="Medlmsliste">
+<Layout title="Medlemmer" side="Medlemmer">
   <nav>
-    <button>Alle</button>
+    <button class="aktivknap">Alle</button>
     <button>Ateister</button>
     <button>Muslimer</button>
     <button>Kristne</button>
@@ -38,39 +37,39 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
       </div>
       <p class="mereknap"><span>vis alle</span></p>
     </div>
-  </main>
-  <div class="tro Muslimer">
-    <h2>Muslimer</h2>
-    <Sektion indhold={Muslimer.slice(0, 3)} />
-    <div class="mere hide">
-      <Sektion indhold={Muslimer.slice(3)} />
+    <div class="tro Muslimer">
+      <h2>Muslimer</h2>
+      <Sektion indhold={Muslimer.slice(0, 3)} />
+      <div class="mere hide">
+        <Sektion indhold={Muslimer.slice(3)} />
+      </div>
+      <p class="mereknap"><span>vis alle</span></p>
     </div>
-    <p class="mereknap"><span>vis alle</span></p>
-  </div>
-  <div class="tro Kristne">
-    <h2>Kristne</h2>
-    <Sektion indhold={Kristne.slice(0, 3)} />
+    <div class="tro Kristne">
+      <h2>Kristne</h2>
+      <Sektion indhold={Kristne.slice(0, 3)} />
+      {
+        Kristne.slice(3).length > 0 && (
+          <>
+            <div class="mere hide">
+              <Sektion indhold={Kristne.slice(3)} />
+            </div>
+            <p class="mereknap">
+              <span>vis alle</span>
+            </p>
+          </>
+        )
+      }
+    </div>
     {
-      Kristne.slice(3).length > 0 && (
-        <>
-          <div class="mere hide">
-            <Sektion indhold={Kristne.slice(3)} />
-          </div>
-          <p class="mereknap">
-            <span>vis alle</span>
-          </p>
-        </>
+      Andre.length > 0 && (
+        <div class="tro Andre">
+          <h2>Andre</h2>
+          <Sektion indhold={Andre.slice(0, 3)} />
+        </div>
       )
     }
-  </div>
-  {
-    Andre.length > 0 && (
-      <div class="tro Andre">
-        <h2>Andre</h2>
-        <Sektion indhold={Andre.slice(0, 3)} />
-      </div>
-    )
-  }
+  </main>
 </Layout>
 <!-- <Debug {allePersoner} /> -->
 
@@ -96,6 +95,10 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   .hide {
     display: none;
   }
+
+  .aktivknap {
+    color: red;
+  }
 </style>
 
 <script>
@@ -103,8 +106,6 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
   const mere = document.querySelectorAll(".mere");
   const mereknapper = document.querySelectorAll(".mereknap");
   const kasser = document.querySelectorAll(".tro");
-
-  console.log(kasser);
 
   knapper.forEach((knap) => {
     knap.addEventListener("click", sorter);
@@ -116,14 +117,12 @@ const Andre = allePersoner.filter((person) => person.tro < 1 || person.tro > 3);
 
   function vismere() {
     this.previousElementSibling.classList.toggle("hide");
-    this.firstElementChild.textContent =
-      this.previousElementSibling.classList.contains("hide")
-        ? "vis alle"
-        : "vis færre";
+    this.firstElementChild.textContent = this.previousElementSibling.classList.contains("hide") ? "vis alle" : "vis færre";
   }
 
   function sorter() {
-    console.log(kasser);
+    document.querySelector(".aktivknap").classList.remove("aktivknap");
+    this.classList.add("aktivknap");
     kasser.forEach((kasse) => kasse.classList.add("hide"));
     mere.forEach((kasse) => kasse.classList.add("hide"));
     mereknapper.forEach((knap) => knap.classList.remove("hide"));
