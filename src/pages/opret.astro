@@ -10,6 +10,14 @@ import Layout from "../layouts/Layout.astro";
     <label for="email">Email</label>
     <input class="input_3" type="text" name="email" placeholder="Email" required />
 
+    <label for="tro">Vælg relegion</label>
+    <select id="tro" name="tro">
+      <option value="1" selected>Ateist</option>
+      <option value="2">Muslim</option>
+      <option value="3">Kristen</option>
+      <option value="4">Andet</option>
+    </select>
+
     <button>Submit</button>
   </form>
 </Layout>
@@ -25,6 +33,7 @@ import Layout from "../layouts/Layout.astro";
     const formData = form.elements;
     const navn = formData.name.value;
     const email = formData.email.value;
+    const tro = formData.tro.value;
     console.log(navn, email);
 
     fetch(url, {
@@ -34,7 +43,7 @@ import Layout from "../layouts/Layout.astro";
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ navn, email }),
+      body: JSON.stringify({ navn, email, tro }),
     });
     location.href = "/";
   }
@@ -42,11 +51,15 @@ import Layout from "../layouts/Layout.astro";
 
 <style>
   label,
-  input {
+  input,
+  select {
     display: block;
   }
-  label,
-  button {
+  label {
     margin-top: 0.5em;
+    margin-bottom: 0.2em;
+  }
+  button {
+    margin-top: 1.5em;
   }
 </style>
