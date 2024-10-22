@@ -4,7 +4,7 @@ const { indhold } = Astro.props;
 ---
 
 <section>
-  {indhold.map((person) => <Personkort id={person.id} aktiv={person.aktiv} link={"/personer/" + person.id} profilbillede={`/thumbs/${person.img}`} navn={person.navn} email={person.email} dato={person.created_at.slice(0, 10)} />)}
+  {indhold.map((elm) => <Personkort person={elm} />)}
 </section>
 
 <style>
