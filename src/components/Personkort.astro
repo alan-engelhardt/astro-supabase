@@ -1,12 +1,12 @@
 ---
-const { profilbillede, navn, link, aktiv } = Astro.props;
+const { id, profilbillede, navn, link, aktiv } = Astro.props;
 ---
 
 <a href={link}>
   <article class={aktiv || "inaktiv"}>
-    <img src={profilbillede} alt="profilbillede" />
+    <img src={profilbillede} alt="profilbillede" style={`view-transition-name: img-${id}`}/>
     <div>
-      <h2>{navn}</h2>
+      <h2 style={`view-transition-name: medlem-${id}`}>{navn}</h2>
     </div>
   </article>
 </a>

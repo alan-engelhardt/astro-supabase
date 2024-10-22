@@ -4,12 +4,7 @@
   --brandbg: rgb(84, 136, 169);
   --inaktiv: rgba(255, 226, 226, 0.5);
   --accent: 124, 58, 237;
-  --accent-gradient: linear-gradient(
-    45deg,
-    rgb(var(--accent)),
-    #da62c4 30%,
-    white 60%
-  );
+  --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
 }
 body {
   font-family: system-ui, sans-serif;
@@ -18,9 +13,11 @@ body {
   background-color: var(--brandcolor);
 }
 code {
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 img {
   max-width: 100%;
+}
+@view-transition {
+  navigation: auto;
 }
