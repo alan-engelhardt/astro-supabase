@@ -21,12 +21,14 @@ const { person } = Astro.props;
 ---
 
 <Layout title={person.navn}>
+ 
   <main>
     <img src={`../../thumbs/${person.billede}`} alt="profilbillede" style={`view-transition-name: img-${person.id}`}/>
     <div>
       <h2 style={`view-transition-name: medlem-${person.id}`}>{person.navn}</h2>
       <p>{person.email}</p>
       <p>Tilmeldt {person.created_at.slice(0, 10)}</p>
+      <a href="/">Tilbage</a>
     </div>
   </main>
 </Layout>
@@ -35,8 +37,15 @@ const { person } = Astro.props;
   img {
     width: 80%;
     margin-right: 1em;
+    border-radius: 1em;
   }
   main {
     display: flex;
+  }
+  h2{
+    background-color: var(--brandbg);
+    color: white;
+    padding: 1rem;
+    border-radius: 1em;
   }
 </style>
