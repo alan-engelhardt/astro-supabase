@@ -17,11 +17,11 @@ const allePersoner = await response.json();
 
 <Layout title="Medlmsliste">
   <nav>
-    <button data-tro="alle" class="aktiv">Alle</button>
-    <button data-tro=1>Ateister</button>
-    <button data-tro=2>Muslimer</button>
-    <button data-tro=3>Kristne</button>
-    <button data-tro=4>Andre</button>
+    <button data-filter="alle" class="aktiv">Alle</button>
+    <button data-filter=1>Ateister</button>
+    <button data-filter=2>Muslimer</button>
+    <button data-filter=3>Kristne</button>
+    <button data-filter=4>Andre</button>
   </nav>
   <main>
     {
@@ -48,7 +48,7 @@ const allePersoner = await response.json();
     document.querySelector(".aktiv").classList.remove("aktiv");
     this.classList.add("aktiv");
     kort.forEach(elm=>{
-      if(elm.dataset.tro == this.dataset.tro || this.dataset.tro == "alle"){
+      if(elm.dataset.filter == this.dataset.filter || this.dataset.filter == "alle"){
         elm.classList.remove("gem");
       }else{
         elm.classList.add("gem");

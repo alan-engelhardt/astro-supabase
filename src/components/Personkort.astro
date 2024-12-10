@@ -2,7 +2,7 @@
 const { profilbillede, navn, email, link, tro, dato } = Astro.props;
 ---
 
-<a href={link} class="kort" data-tro={tro}>
+<a href={link} class="kort" data-filter={tro}>
   <article>
     <img src={profilbillede} alt="profilbillede" />
     <div>
