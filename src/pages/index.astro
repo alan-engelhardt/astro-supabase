@@ -18,6 +18,7 @@ const allePersoner = await response.json();
 const Ateister = allePersoner.filter((person) => person.tro == 1);
 const Muslimer = allePersoner.filter((person) => person.tro == 2);
 const Kristne = allePersoner.filter((person) => person.tro == 3);
+const Andre = allePersoner.filter((person) => person.tro == 4);
 ---
 
 <Layout title="Medlmsliste">
@@ -25,6 +26,7 @@ const Kristne = allePersoner.filter((person) => person.tro == 3);
     <Sektion indhold={Ateister} filter="Ateister" />
     <Sektion indhold={Muslimer} filter="Muslimer" />
     <Sektion indhold={Kristne} filter="Kristne" />
+    <Sektion indhold={Andre} filter="Andre" />
   </main>
 </Layout>
 
