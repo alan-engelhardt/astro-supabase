@@ -1,12 +1,12 @@
 ---
-const { profilbillede, navn, email, link, dato } = Astro.props;
+const { profilbillede, navn, email, link, tro, dato } = Astro.props;
 ---
 
-<a href={link}>
+<a href={link} class="kort" data-tro={tro}>
   <article>
     <img src={profilbillede} alt="profilbillede" />
     <div>
-      <h2>{navn}</h2>
+      <h2>{navn} ({tro})</h2>
       <p>{email}</p>
       <p>Tilmeldt {dato}</p>
     </div>

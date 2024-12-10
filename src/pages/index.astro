@@ -16,6 +16,12 @@ const allePersoner = await response.json();
 ---
 
 <Layout title="Medlmsliste">
+  <nav>
+    <button data-tro="alle" class="aktiv">Alle</button>
+    <button data-tro=1>Ateister</button>
+    <button data-tro=2>Muslimer</button>
+    <button data-tro=3>Kristne</button>
+  </nav>
   <main>
     {
       allePersoner.map((person) => (
@@ -24,6 +30,7 @@ const allePersoner = await response.json();
           profilbillede={`/thumbs/${person.billede}`}
           navn={person.navn}
           email={person.email}
+          tro={person.tro}
           dato={person.created_at.slice(0, 10)}
         />
       ))
@@ -31,12 +38,39 @@ const allePersoner = await response.json();
   </main>
 </Layout>
 
+<script>
+  const knapper = document.querySelectorAll("button");
+  const kort = document.querySelectorAll(".kort");
+  knapper.forEach(knap=>knap.addEventListener("click", filtrer));
+
+  function filtrer(){
+    document.querySelector(".aktiv").classList.remove("aktiv");
+    this.classList.add("aktiv");
+    kort.forEach(elm=>{
+      if(elm.dataset.tro == this.dataset.tro || this.dataset.tro == "alle"){
+        elm.classList.remove("gem");
+      }else{
+        elm.classList.add("gem");
+      }
+    })
+  }
+</script>
+
 <style>
   main {
     padding: 1em;
     display: grid;
     gap: 1em;
   }
+
+  nav{
+    padding: 1em;
+  }
+
+  .aktiv{
+    color: orange;
+  }
+
   @media screen and (min-width: 600px) {
     main {
       grid-template-columns: repeat(auto-fit, 350px);
