@@ -3,7 +3,7 @@ const { profilbillede, navn, link, aktiv } = Astro.props;
 ---
 
 <a href={link}>
-  <article class={!aktiv && "inaktiv"}>
+  <article class={aktiv || "inaktiv"}>
     <img src={profilbillede} alt="profilbillede" />
     <div>
       <h2>{navn}</h2>
