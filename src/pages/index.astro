@@ -40,8 +40,8 @@ const allePersoner = await response.json();
 </Layout>
 
 <script>
-  const knapper = document.querySelectorAll("button");
   const kort = document.querySelectorAll(".kort");
+  const knapper = document.querySelectorAll("button");
   knapper.forEach(knap=>knap.addEventListener("click", filtrer));
 
   function filtrer(){
@@ -49,9 +49,9 @@ const allePersoner = await response.json();
     this.classList.add("aktiv");
     kort.forEach(elm=>{
       if(elm.dataset.filter == this.dataset.filter || this.dataset.filter == "alle"){
-        elm.classList.remove("gem");
+        elm.classList.remove("skjul");
       }else{
-        elm.classList.add("gem");
+        elm.classList.add("skjul");
       }
     })
   }
