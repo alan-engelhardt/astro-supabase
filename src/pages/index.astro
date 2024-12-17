@@ -16,6 +16,8 @@ const allePersoner = await response.json();
 ---
 
 <Layout title="Medlmsliste">
+
+  <!-- filterknapper -->
   <nav>
     <button data-filter="alle" class="aktiv">Alle</button>
     <button data-filter=1>Ateister</button>
@@ -23,6 +25,8 @@ const allePersoner = await response.json();
     <button data-filter=3>Kristne</button>
     <button data-filter=4>Andre</button>
   </nav>
+
+  <!-- personliste -->
   <main>
     {
       allePersoner.map((person) => (
@@ -40,13 +44,20 @@ const allePersoner = await response.json();
 </Layout>
 
 <script>
+  //vælg alle cards
   const kort = document.querySelectorAll(".kort");
+  //vælg alle filterknapper
   const knapper = document.querySelectorAll("button");
+  //sæt click eventlistener på alle knapper som kalder filtrer-funktionen
   knapper.forEach(knap=>knap.addEventListener("click", filtrer));
 
   function filtrer(){
+    //afmarker den aktive knap
     document.querySelector(".aktiv").classList.remove("aktiv");
+    //marker den knap der blev klikket på ved at tilføje klassen "aktiv"
     this.classList.add("aktiv");
+
+    //loop igennem alle cards og sammenlign disses data-attribut med data-attributten på den filter-knap der blev klikket på. Hvis der er match vises kortet ved at fjerne skjul-klassen. Øvrige kort skjules
     kort.forEach(elm=>{
       if(elm.dataset.filter == this.dataset.filter || this.dataset.filter == "alle"){
         elm.classList.remove("skjul");
